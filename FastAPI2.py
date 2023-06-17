@@ -96,10 +96,6 @@ async def get_credit_image(credentials: HTTPBasicCredentials = Depends(security)
     return StreamingResponse(image_bytes, media_type="image/png")
 
 
-//model_path = r'LightGBM_with_threshold.pkl'
-//with open(model_path, 'rb') as f:
-//    model_with_threshold = pickle.load(f)
- //   model = model_with_threshold['model']
 
 model_url = 'https://github.com/javiersan48/OpencClassroom-Project/raw/master/LightGBM_with_threshold.pkl'
 response = requests.get(model_url)
