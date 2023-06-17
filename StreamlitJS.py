@@ -15,7 +15,7 @@ from streamlit.components import v1 as components
 from io import BytesIO
 import warnings
 
-url_logo = "https://javiersan48-opencclassroom-project-fastapi-14wtrl.streamlit.app/image_logo"
+url_logo = "https://javiersan48-opencclassroom-project-fastapi2-ruun5w.streamlit.app/image_logo"
 response = requests.get(url_logo, auth=("Openclassroom", "Jerome_S"))
 logo_image = Image.open(BytesIO(response.content))
 st.set_page_config(
