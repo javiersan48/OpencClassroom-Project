@@ -233,8 +233,3 @@ async def get_data_drift(credentials: HTTPBasicCredentials = Depends(security)):
     file_content = response['Body'].read().decode('utf-8')
     return file_content
     
-if __name__ == '__main__':
-    uvicorn.run("API Local:app", host='127.0.0.1', port=8000)
-    #uvicorn app:app --reload
-    #cd C:\Users\jerom\Desktop\chamsedine
-    #uvicorn FastAPI_AWS:app --reload
