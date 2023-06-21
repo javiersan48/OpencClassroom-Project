@@ -1,0 +1,15 @@
+pandas==1.5.3
+boto3==1.26.151
+numpy==1.5.3
+botocore==1.29.151
+fastapi==0.96.0
+shap==0.41.0
+uvicorn==0.22.0
+altair==4.2.2
+lime==0.2.0.1
+matplotlib==3.7.0
+plotly==5.9.0
+Pillow==9.4.0
+seaborn==0.12.2
+streamlit==1.22.0
+
