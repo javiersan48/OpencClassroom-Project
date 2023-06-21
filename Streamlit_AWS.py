@@ -16,7 +16,7 @@ from io import BytesIO
 import warnings
 import io
 
-url_logo = "https://ocprojet7.streamlit.app/image_logo"
+url_logo = "https://ocprojet7api.streamlit.app/image_logo"
 response = requests.get(url_logo, auth=("Openclassroom", "Jerome_S"))
 logo_image = Image.open(BytesIO(response.content))
 st.set_page_config(
@@ -35,14 +35,14 @@ def convert_columns_to_numeric(df):
     
     return df
 
-url = "https://ocprojet7.streamlit.app/data_explore"
+url = "https://ocprojet7api.streamlit.app/data_explore"
 response = requests.get(url, auth=("Openclassroom", "Jerome_S"))
 # Mise au bon format de la réponse json
 response_text_modified = response.text.replace('"', '', 1)[:-1]
 response_text_modified = response_text_modified.replace('\\r\\n', '\r\n')
 raw_data = pd.read_csv(io.StringIO(response_text_modified))
 
-data_url = "https://ocprojet7.streamlit.app/data_predict"
+data_url = "https://ocprojet7api.streamlit.app/data_predict"
 response = requests.get(data_url, auth=("Openclassroom", "Jerome_S"))
 # Mise au bon format de la réponse json
 response_text_modified = response.text.replace('"', '', 1)[:-1]
@@ -72,7 +72,7 @@ def jauge(valeur):
     
 
 def global_explaination():
-    url = "https://ocprojet7.streamlit.app/global_shap_values"
+    url = "https://ocprojet7api.streamlit.app/global_shap_values"
     response = requests.get(url, auth=("Openclassroom", "Jerome_S"))
 
     shap_values = json.loads(response.content)["shap_values"]
@@ -87,7 +87,7 @@ def global_explaination():
     st.pyplot(plt.gcf())
 
 def explication_locale(numéro_client):
-    url = f"https://ocprojet7.streamlit.app/local_shap_values/{numéro_client}"
+    url = f"https://ocprojet7api.streamlit.app/local_shap_values/{numéro_client}"
     response = requests.get(url, auth=("Openclassroom", "Jerome_S"))
 
     data_temp = json.loads(response.content)
@@ -173,7 +173,7 @@ def main():
         st.info("""Nous finançons vos rêves. Voiture, maison, mariage... Nous vous offrons à travers des emprunts bancaires la possibilité de financer vos projets. Nos conseillers seront toujours à l'écoute et vous aideront au mieux dans votre développement.""")
 
         st.markdown("""---""")
-        url_cover = "https://ocprojet7.streamlit.app/image_cover"
+        url_cover = "https://ocprojet7api.streamlit.app/image_cover"
         response = requests.get(url_cover, auth=("Openclassroom", "Jerome_S"))
         cover_image = Image.open(BytesIO(response.content))
         
@@ -192,7 +192,7 @@ def main():
     with tab1.markdown("**Project Lifecycle**"):
         col1, col2 = st.columns(2)
         col1.info("**Comment fonctionne l'algorithme**")
-        url_lgbm = "http://localhost:8000/image_lgbm"
+        url_lgbm = "https://ocprojet7api.streamlit.app/image_lgbm"
         response = requests.get(url_lgbm, auth=("Openclassroom", "Jerome_S"))
         LightGBM_image = Image.open(BytesIO(response.content))
         
@@ -203,7 +203,7 @@ def main():
             )
 
 
-        url_dream = "https://ocprojet7.streamlit.app/image_credit"
+        url_dream = "https://ocprojet7api.streamlit.app/image_credit"
         response = requests.get(url_dream, auth=("Openclassroom", "Jerome_S"))
         dreamcredit_image = Image.open(BytesIO(response.content))
         col2.info("**Réalisez vos rêves**")
@@ -224,7 +224,7 @@ def main():
             
                     user = data[data.index == int(user_id_value)]
 
-                    url = f"https://ocprojet7.streamlit.app/probabilities/{user_id_value}"
+                    url = f"https://ocprojet7api.streamlit.app/probabilities/{user_id_value}"
                     response = requests.get(url, auth=("Openclassroom", "Jerome_S"))
 
                     probabilities = json.loads(response.content)["probabilities"]
@@ -406,7 +406,7 @@ def main():
             #     st.warning("Impossible de calculer la corrélation car l'une des features ne contient que deux classes.")
    
     with tab4.subheader("Etat du Data Drift"):
-        drift_url = "https://ocprojet7.streamlit.app/data_drift"
+        drift_url = "https://ocprojet7api.streamlit.app/data_drift"
         response = requests.get(drift_url, auth=("Openclassroom", "Jerome_S"))
         html_content = response.text
         components.html(html_content, height=1500)
